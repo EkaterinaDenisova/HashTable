@@ -41,7 +41,7 @@ int main()
     h1.PrintTable();
 
 
-    //HashTableIterator<int> it1(&h1);
+    HashTableIterator<int> it1(&h1);
 
     
     /*for (auto it1 : h1) {

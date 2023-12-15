@@ -7,8 +7,8 @@
 #include "LinkedList.h"
 using namespace std;
 
-//template <class T>
-//class HashTableIterator;
+template <class T>
+class HashTableIterator;
 
 // Класс хеш-таблицы
 template <class T>
@@ -47,7 +47,7 @@ public:
 	//void Update(const T& key);
 
 
-	/*friend class HashTableIterator<T>;
+	friend class HashTableIterator<T>;
 
 
 	HashTableIterator<T> begin() const {
@@ -56,12 +56,12 @@ public:
 
 	HashTableIterator<T> end() const {
 		return HashTableIterator<T>(nullptr);
-	}*/
+	}
 
 };
 
 // класс итератора для хеш-таблицы
-/*template<typename T>
+template<typename T>
 class HashTableIterator : public AbsIterator<T> {
 private:
 	// указатель таблицы, подлежащей обходу
@@ -85,6 +85,8 @@ private:
 				{
 					// перед тем как вернуться, установить currentBucket равным i
 					//и в currBucketPtr поместить адрес нового непустого списка
+					
+					//currBucketPtr(ht->buckets[i].begin());
 					currBucketPtr = ht->buckets[i].begin();
 					//currBucketPtr->Reset();
 					currentBucket = i;
@@ -108,8 +110,8 @@ public:
 
 	// оператор сравнения
 	bool operator==(const AbsIterator<T>& o) const override {
-		return (currBucketPtr == dynamic_cast<const HashTableIterator<T>&>(o).currBucketPtr)
-			&& (this->currentBucket == dynamic_cast<const HashTableIterator<T>&>(o).currentBucket);
+		return (*currBucketPtr == dynamic_cast<const HashTableIterator<T>&>(o).*currBucketPtr)
+			&& (this->currentBucket == dynamic_cast<const HashTableIterator<T>&>(o).*currentBucket);
 	}
 
 	bool operator!=(const AbsIterator<T>& o) const override {
@@ -127,7 +129,7 @@ public:
 	HashTableIterator& operator++() override {
 
 		++currBucketPtr;
-		if (currBucketPtr == nullptr) {
+		if (currBucketPtr == ht->buckets[currentBucket].end()) {
 			SearchNextNode(++currentBucket);
 		}
 		return *this;
@@ -146,7 +148,7 @@ public:
 
 	}
 
-};*/
+};
 
 // конструктор с параметрами, включающими
 // размер таблицы и хеш-функцию
