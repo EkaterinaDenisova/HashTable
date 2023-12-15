@@ -1,5 +1,5 @@
 #pragma once
-// author Денисова Екатерина
+//author: Денисова Екатерина
 
 #include <vector>
 #include <iostream>
@@ -20,6 +20,7 @@ private:
 	// массив связанных списков
 	vector< LinkedList<T> > buckets;
 	// хеш-функция
+	// todo отдельный тип для указателя на функцию
 	unsigned long (*hf)(T key);
 public:
 	// конструктор с параметрами, включающими

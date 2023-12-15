@@ -11,6 +11,7 @@ unsigned long HashF10(int key)
 {
     return key % 10; // метод деления на 10 (возвращается остаток от деления)
 }
+// todo другая хеш-функция из презентации
 
 int main()
 {
@@ -22,11 +23,11 @@ int main()
     h1.Insert(3);
     cout << "ok";
     int f = h1.Find(2);
-    cout << "\n" << f;
+   // cout << "\n" << f;
     f = h1.Find(12);
-    cout << "\n" << f;
+    //cout << "\n" << f;
     f = h1.Find(3);
-    cout << "\n" << f << "\n";
+    //cout << "\n" << f << "\n";
 
     h1.PrintTable();
 
