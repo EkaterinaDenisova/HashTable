@@ -7,8 +7,8 @@
 #include "LinkedList.h"
 using namespace std;
 
-template <class T>
-class HashTableIterator;
+//template <class T>
+//class HashTableIterator;
 
 // Класс хеш-таблицы
 template <class T>
@@ -33,6 +33,8 @@ public:
 	void Insert(const T& key);
 
 	// поиск в хеш-таблице по ключу
+	// возвращает индекс элемента в списке по индексу таблицы, либо 
+	// -1, если в таблице нет такого значения
 	int Find(const T& key);
 
 	// удаление из хеш-таблицы
@@ -47,21 +49,21 @@ public:
 	//void Update(const T& key);
 
 
-	friend class HashTableIterator<T>;
+	//friend class HashTableIterator<T>;
 
 
-	HashTableIterator<T> begin() const {
+	/*HashTableIterator<T> begin() const {
 		return HashTableIterator<T>(*this);
 	}
 
 	HashTableIterator<T> end() const {
 		return HashTableIterator<T>(nullptr);
-	}
+	}*/
 
 };
 
 // класс итератора для хеш-таблицы
-template<typename T>
+/*template<typename T>
 class HashTableIterator : public AbsIterator<T> {
 private:
 	// указатель таблицы, подлежащей обходу
@@ -148,7 +150,7 @@ public:
 
 	}
 
-};
+};*/
 
 // конструктор с параметрами, включающими
 // размер таблицы и хеш-функцию

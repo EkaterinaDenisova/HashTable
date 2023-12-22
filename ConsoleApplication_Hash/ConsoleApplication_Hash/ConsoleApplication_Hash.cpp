@@ -13,6 +13,18 @@ unsigned long HashF10(int key)
 }
 // todo другая хеш-функция из презентации
 
+// более сложная хэш-функция
+unsigned long HashFstr(string key)
+{
+    unsigned long hash = 5381;
+
+    for (char c : key) {
+        hash = ((hash << 5) + hash) + c;
+    }
+
+    return hash;
+}
+
 int main()
 {
     setlocale(LC_ALL, "rus");
@@ -41,7 +53,12 @@ int main()
     h1.PrintTable();
 
 
-    HashTableIterator<int> it1(&h1);
+    ////////
+
+
+    HashTable<string> h2(10, HashFstr); // 10 блоков
+
+    //HashTableIterator<int> it1(&h1);
 
     
     /*for (auto it1 : h1) {
