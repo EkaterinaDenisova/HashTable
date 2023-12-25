@@ -13,7 +13,7 @@ unsigned long HashF10(int key)
 }
 // todo другая хеш-функция из презентации
 
-// более сложная хэш-функция
+// хэш-функция (dan bernstein algorithm)
 unsigned long HashFstr(string key)
 {
     unsigned long hash = 5381;
@@ -57,6 +57,17 @@ int main()
 
 
     HashTable<string> h2(10, HashFstr); // 10 блоков
+    h2.Insert("12");
+    h2.Insert("22");
+    h2.Insert("222");
+    h2.Insert("35");
+    h2.Insert("64");
+    h2.Insert("157");
+    h2.Insert("84");
+    h2.Insert("tmp");
+
+    h2.PrintTable();
+
 
     //HashTableIterator<int> it1(&h1);
 

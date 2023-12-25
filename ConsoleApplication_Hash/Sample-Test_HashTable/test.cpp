@@ -69,3 +69,30 @@ TEST(TestHashTable, TestDelete) {
 	
 
 }
+
+// тестирование количества элементов в хеш-таблице
+TEST(TestHashTable, TestNum) {
+
+	HashTable<int> h1(10, HashF10); // 10 блоков
+
+	EXPECT_EQ(0, h1.NumberOfNodes());
+
+	h1.Insert(2);
+	h1.Insert(12);
+	h1.Insert(3);
+	h1.Insert(33);
+	h1.Insert(24);
+	h1.Insert(85);
+
+	EXPECT_EQ(6, h1.NumberOfNodes());
+
+	h1.Delete(85);
+	EXPECT_EQ(5, h1.NumberOfNodes());
+
+	h1.Delete(85);
+	EXPECT_EQ(5, h1.NumberOfNodes());
+
+	h1.Insert(3);
+	EXPECT_EQ(5, h1.NumberOfNodes());
+
+}

@@ -10,7 +10,7 @@ using namespace std;
 //template <class T>
 //class HashTableIterator;
 
-// Класс хеш-таблицы
+// Класс хеш-таблицы (на основе vector <LinkedList>)
 template <class T>
 class HashTable
 {
@@ -35,7 +35,7 @@ public:
 	// поиск в хеш-таблице по ключу
 	// возвращает индекс элемента в списке по индексу таблицы, либо 
 	// -1, если в таблице нет такого значения
-	int Find(const T& key);
+	int Find(const T& key) const;
 
 	// удаление из хеш-таблицы
 	void Delete(const T& key);
@@ -44,10 +44,13 @@ public:
 	void ClearTable();
 
 	// вывод таблицы в консоль
-	void PrintTable();
+	void PrintTable() const;
 	// обновление данных в таблице
 	//void Update(const T& key);
 
+	// метод, возвращающий количество элементов в хеш-таблице
+	// const - не меняет полей класса
+	int NumberOfNodes() const;
 
 	//friend class HashTableIterator<T>;
 
@@ -166,6 +169,20 @@ HashTable<T>::HashTable(int nbuckets, unsigned long hashf(T key)) {
 	}
 }
 
+// количество элементов в хеш-таблице
+template <class T>
+int HashTable<T>::NumberOfNodes() const
+{
+	int num = 0;
+
+	for (int i = 0; i < numBuckets; i++) {
+		num += this->buckets[i].ListSize();
+	}
+
+	return num;
+
+}
+
 // добавление элемента в хеш-таблицу
 template <class T>
 void HashTable<T>::Insert(const T& key)
@@ -208,17 +225,17 @@ void HashTable<T>::Insert(const T& key)
 // возвращает индекс элемента в списке по индексу таблицы, либо 
 // -1, если в таблице нет такого значения
 template <class T>
-int HashTable<T>::Find(const T& key)
+int HashTable<T>::Find(const T& key) const
 {
 	// вычислить значение хеш-функции и установить lst
 	// на начало соответствующего связанного списка
 	int hashval = hf(key) % numBuckets;
-	LinkedList<T>& lst = buckets[hashval];
+	//LinkedList<T>& lst = buckets[hashval];
 
 
 	// просматривать узлы связанного списка в поисках key
 	// вернуть индекс
-	return lst.searchNodeInd(key);
+	return buckets[hashval].searchNodeInd(key);
 	
 }
 
@@ -250,7 +267,7 @@ void HashTable<T>::ClearTable() {
 
 // вывод таблицы в консоль
 template <class T>
-void HashTable<T>::PrintTable() {
+void HashTable<T>::PrintTable() const {
 	//LinkedList<T>& lst;
 	for (int i = 0; i < numBuckets; i++) {
 		cout << i << ") ";
