@@ -16,7 +16,8 @@ class HashTable
 {
 private:
 	// число блоков; представляет размер таблицы
-	int numBuckets;
+	int numBuckets; // можно обойтись без данного поля, т.к есть vector.size
+
 	// массив связанных списков
 	vector< LinkedList<T> > buckets;
 	// хеш-функция
@@ -51,6 +52,11 @@ public:
 	// метод, возвращающий количество элементов в хеш-таблице
 	// const - не меняет полей класса
 	int NumberOfNodes() const;
+
+	// метод, возвращающий количество блоков в хеш-таблице
+	int GetNumberOfBlocs() const;
+
+	// todo: можно добавить метод to array или to vec
 
 	//friend class HashTableIterator<T>;
 
@@ -181,6 +187,12 @@ int HashTable<T>::NumberOfNodes() const
 
 	return num;
 
+}
+
+// размер вектора
+template <class T>
+int HashTable<T>::GetNumberOfBlocs() const {
+	return buckets.size();
 }
 
 // добавление элемента в хеш-таблицу
